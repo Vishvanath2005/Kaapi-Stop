@@ -11,7 +11,7 @@ const ViewMenu = () => {
     { label: "Product ID", value: user.productId },
     { label: "Product Name", value: user.product_name },
     { label: "Category", value: user.category },
-    { label: "Price", value: user.price },
+    { label: "Price", value: `$${user.price}` },
     {
       label: "Add-ons Available",
       value: user.add_ons,
