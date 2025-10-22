@@ -32,7 +32,7 @@ const NearbyAttractions = () => {
         added_on: formatDate1(item.added_on),
       }));
 
-      setAttractionData(transformedData);
+      setAttractionData(transformedData.reverse());
       setLoading(false);
     } catch (error) {
       console.error("Error fetching offers:", error);

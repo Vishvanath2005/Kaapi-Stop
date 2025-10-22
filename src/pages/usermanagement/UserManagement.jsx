@@ -33,7 +33,7 @@ const UserManagement = () => {
         status: item.status,
       }));
 
-      setUserData(transformedData);
+      setUserData(transformedData.reverse());
       setLoading(false);
     } catch (error) {
       console.error("Error fetching offers:", error);

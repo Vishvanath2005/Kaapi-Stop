@@ -42,7 +42,7 @@ const OfferManagement = () => {
             : "Active",
       }));
 
-      setOfferData(transformedData);
+      setOfferData(transformedData.reverse());
       setLoading(false);
     } catch (error) {
       console.error("Error fetching offers:", error);

@@ -34,7 +34,7 @@ const MenuManagement = () => {
         status: item.status,
       }));
 
-      setMenuData(transformedData);
+      setMenuData(transformedData.reverse());
       setLoading(false);
     } catch (error) {
       console.error("Error fetching offers:", error);

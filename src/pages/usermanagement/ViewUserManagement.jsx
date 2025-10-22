@@ -28,10 +28,10 @@ const ViewUserManagement = () => {
 
   const mainFields = [
     { label: "Name", value: user.name },
-    { label: "Phone Number", value: user.phonenumber },
+    { label: "Phone Number", value: user.phone },
     { label: "Email", value: user.email },
-    { label: "Wallet Balance", value: user.walletbalace },
-    { label: "Membership Type", value: user.membershiptype },
+    { label: "Wallet Balance", value: user.wallet_balance },
+    { label: "Membership Type", value: user.membership_type },
     { label: "Status", value: user.status },
   ];
 

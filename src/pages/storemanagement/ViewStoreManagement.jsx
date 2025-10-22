@@ -5,21 +5,18 @@ import { IoMdClose } from "react-icons/io";
 import { BsCheckCircle } from "react-icons/bs";
 import { useLocation } from "react-router";
 
-import { CgUnblock } from "react-icons/cg";
-import { MdOutlineBlock } from "react-icons/md";
-
 const ViewStoreManagment = () => {
   const { state } = useLocation();
   const user = state?.item;
   const [openModal, setOpenModal] = useState(false);
 
   const mainFields = [
-    { label: "Store ID", value: user.storeid },
-    { label: "Store Name", value: user.storename },
+    { label: "Store ID", value: user.storeId },
+    { label: "Store Name", value: user.store_name },
     { label: "City", value: user.city },
     { label: "Address", value: user.address },
-    { label: "Contact Number", value: user.contactnumber },
-    { label: "Opening House", value: user.openinghouse },
+    { label: "Contact Number", value: user.store_number },
+    { label: "Opening House", value: user.opening_hours },
     { label: "Status", value: user.status },
   ];
 
