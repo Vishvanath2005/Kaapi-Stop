@@ -5,7 +5,7 @@ import { menumanagementdata } from "../../components/Data";
 import ViewMenu from "./ViewMenu";
 import EditMenuManagement from "./EditMenuManagement";
 import axios from "axios";
-import { API } from "../../Host";
+import { API, formatDate1 } from "../../Host";
 
 const MenuManagement = () => {
   const [menuData, setMenuData] = useState([]);
@@ -30,7 +30,7 @@ const MenuManagement = () => {
         category: item.category,
         price: item.price,
         add_ons: item.add_ons,
-        last_updated: item.last_updated,
+        last_updated: formatDate1(item.last_updated),
         status: item.status,
       }));
 
