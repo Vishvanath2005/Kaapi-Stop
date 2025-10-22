@@ -62,6 +62,7 @@ const UserManagement = () => {
         tabledata={userData}
         routepoint={"viewusermanagement"}
         EditModal={EditUsers}
+        loading={loading}
       />
     </div>
   );
