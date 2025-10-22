@@ -1,23 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Table from "../../components/Table";
-import { LuLandPlot } from "react-icons/lu";
-import { IoDocumentTextOutline } from "react-icons/io5";
-import { usermanagementdata } from "../../components/Data";
-
-import { File, AlertTriangle } from 'lucide-react';
+import { File, AlertTriangle } from "lucide-react";
 import EditUsers from "./EditUsers";
 import AddUsers from "./AddUsers";
+import axios from "axios";
+import { API } from "../../Host";
 
 const UserManagement = () => {
+  const [userData, setUserData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   const Columns = [
-    { label: "User ID", key: "userid" },
+    { label: "User ID", key: "userId" },
     { label: "Name", key: "name" },
-    { label: "Phone Number", key: "phonenumber" },
+    { label: "Phone Number", key: "phone" },
     { label: "Email", key: "email" },
-    { label: "Wallet Balance", key: "walletbalace" },
-    { label: "MemberShip Type", key: "membershiptype" },
+    { label: "Wallet Balance", key: "wallet_balance" },
+    { label: "MemberShip Type", key: "membership_type" },
     { label: "Status", key: "status" },
   ];
+
+   const fetchUsers = async () => {
+    try {
+      const response = await axios.get(`${API}/user/getallusers`);
+      const transformedData = response.data.data.map((item, index) => ({
+        userId: item.userId,
+        name: item.name,
+        phone: item.phone,
+        email: item.email,
+        wallet_balance: item.wallet_balance,
+        membership_type: item.membership_type,
+        status: item.status,
+      }));
+
+      setUserData(transformedData);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching offers:", error);
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
     <div>
@@ -26,12 +52,14 @@ const UserManagement = () => {
         pagetitle="User Management"
         addButtonLabel="Add User"
         AddModal={AddUsers}
-        addButtonIcon={<div className="relative w-6 h-6">
-          <File className="absolute  w-6 h-6" />
-          <AlertTriangle className="absolute left-1.5 top-2  w-3 h-3" />
-          </div>}
+        addButtonIcon={
+          <div className="relative w-6 h-6">
+            <File className="absolute  w-6 h-6" />
+            <AlertTriangle className="absolute left-1.5 top-2  w-3 h-3" />
+          </div>
+        }
         coloums={Columns}
-        tabledata={usermanagementdata}
+        tabledata={userData}
         routepoint={"viewusermanagement"}
         EditModal={EditUsers}
       />
