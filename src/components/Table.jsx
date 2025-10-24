@@ -85,25 +85,26 @@ const Table = ({
                 />
               </div>
             )}
-              {/* <div className="flex items-center gap-2 mr-4"> */}
-              {showExport && (
-                <Button
-                  button_icon={<TbFileExport size={22} />}
-                  button_name="Export"
-                  bgColor="bg-white"
-                  textColor="text-dark-brown"
-                  paddingX={"px-4"}
-                />)}
-                {showFilter && (
-                <Button
-                  button_icon={<BiFilterAlt size={22} />}
-                  button_name="Filter"
-                  bgColor="bg-white"
-                  textColor="text-dark-brown"
-                  paddingX={"px-4"}
-                />)}
-              {/* </div> */}
-            
+            {/* <div className="flex items-center gap-2 mr-4"> */}
+            {showExport && (
+              <Button
+                button_icon={<TbFileExport size={22} />}
+                button_name="Export"
+                bgColor="bg-white"
+                textColor="text-dark-brown"
+                paddingX={"px-4"}
+              />
+            )}
+            {showFilter && (
+              <Button
+                button_icon={<BiFilterAlt size={22} />}
+                button_name="Filter"
+                bgColor="bg-white"
+                textColor="text-dark-brown"
+                paddingX={"px-4"}
+              />
+            )}
+            {/* </div> */}
           </div>
         </div>
         <div

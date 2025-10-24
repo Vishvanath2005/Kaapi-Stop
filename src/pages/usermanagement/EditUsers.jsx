@@ -4,6 +4,9 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { IoClose } from "react-icons/io5";
 import { InputField } from "../../components/Inputfield";
+import { useLocation } from "react-router";
+import axios from "axios";
+import { API } from "../../Host";
 
 const schema = yup.object().shape({
   name: yup
@@ -33,7 +36,7 @@ const schema = yup.object().shape({
     .required("Role is required"),
 });
 
-const EditUsers = ({ onclose }) => {
+const EditUsers = ({ onclose, item }) => {
   const {
     register,
     handleSubmit,
@@ -42,9 +45,17 @@ const EditUsers = ({ onclose }) => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => {
-    console.log("Form Data:", data);
-    // onclose();
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.put(`${API}/user/updateuserbyid/${item.userId}`, data);
+
+      if (response.status === 200 || response.status === 201) {
+        console.log("User updated successfully:", response.data);
+        onclose();
+      }
+    } catch (error) {
+      console.error("Error updating user:", error);
+    }
   };
 
   return (
@@ -64,21 +75,21 @@ const EditUsers = ({ onclose }) => {
                 <InputField
                   label="Name"
                   name="name"
-                  placeholder="Type Here"
+                  placeholder={`${item.name}`}
                   register={register}
                   errors={errors}
                 />
                 <InputField
                   label="Phone Number"
                   name="phonenumber"
-                  placeholder="Type Here"
+                  placeholder={`${item.phone}`}
                   register={register}
                   errors={errors}
                 />
                 <InputField
                   label="Email ID"
                   name="emailid"
-                  placeholder="Type Here"
+                  placeholder={`${item.email}`}
                   register={register}
                   errors={errors}
                 />
@@ -87,7 +98,7 @@ const EditUsers = ({ onclose }) => {
                   name="walletbalance"
                   register={register}
                   errors={errors}
-                  placeholder="Type Here"
+                  placeholder={`${item.wallet_balance}`}
                 />
 
                 <InputField
@@ -95,14 +106,26 @@ const EditUsers = ({ onclose }) => {
                   name="membershiptype"
                   register={register}
                   errors={errors}
-                  placeholder="Type Here"
+                  type="select"
+                   placeholder="Select Membership Type"
+                  options={[
+                    { value: "Free", label: "Free" },
+                    { value: "Gold", label: "Gold" },
+                    { value: "Silver", label: "Silver" },
+                  ]}
                 />
                 <InputField
                   label="Status"
                   name="status"
+                  type="select"
                   register={register}
                   errors={errors}
-                  placeholder="Type Here"
+                  placeholder="Select Status"
+                  options={[
+                    { value: "Active", label: "Active" },
+                    { value: "Inactive", label: "Inactive" },
+                    { value: "Blocked", label: "Blocked" },
+                  ]}
                 />
               </div>
             </div>
@@ -116,7 +139,7 @@ const EditUsers = ({ onclose }) => {
               </button>
               <button
                 type="submit"
-                className="cursor-pointer px-6 bg-dark-brown text-white py-2   rounded"
+                className="cursor-pointer px-6 bg-dark-brown text-white py-2 rounded"
               >
                 Save
               </button>

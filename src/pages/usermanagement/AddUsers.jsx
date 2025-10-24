@@ -14,7 +14,7 @@ const schema = yup.object().shape({
   wallet_balance: yup.string().required("Wallet Balance is required"),
 });
 
-const AddUsers = ({ onclose, onSuccess }) => {
+const AddUsers = ({ onclose}) => {
   const {
     register,
     handleSubmit,

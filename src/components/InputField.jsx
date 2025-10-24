@@ -32,7 +32,7 @@ export const InputField = ({
           type={type}
           placeholder={placeholder}
           {...register(name)}
-          className={`col-span-7 border border-input-bordergrey rounded-lg outline-none py-2 px-2 placeholder:text-xs placeholder:font-light
+          className={`col-span-7 border border-input-bordergrey rounded-lg outline-none py-2 px-2 placeholder:text-xs placeholder:font-semibold placeholder:text-gray-400
           ${errors[name] ? "border-red-500" : ""}`}
         />
       )}
